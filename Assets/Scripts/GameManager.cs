@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject fireworks1;
     public GameObject fireworks2;
+    public GameObject confetti;
 
     int ballsDestroyed = 0;
 
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
         if (PlayerPrefs.HasKey("newHighScore") && PlayerPrefs.GetInt("newHighScore") == 1)
         {
             winText.text = "NEW HIGH SCORE!";
+            Invoke("Confetti", 0.5f);
             Invoke("ShowFireworks", 1f);
         } else
         {
@@ -107,5 +109,10 @@ public class GameManager : MonoBehaviour
     public void Fireworks2()
     {
         fireworks2.SetActive(true);
+    }
+
+    public void Confetti()
+    {
+        confetti.SetActive(true);
     }
 }
