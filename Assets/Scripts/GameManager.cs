@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI bestTimeText;
     public TextMeshProUGUI winText;
 
+    public GameObject fireworks1;
+    public GameObject fireworks2;
+    public GameObject confetti;
+
     int ballsDestroyed = 0;
 
     //void Awake()
@@ -53,11 +57,17 @@ public class GameManager : MonoBehaviour
 
     void Win()
     {
+
         ScoreManager.instance.StopScore();
 
         if (PlayerPrefs.HasKey("newHighScore") && PlayerPrefs.GetInt("newHighScore") == 1)
         {
             winText.text = "NEW HIGH SCORE!";
+            Invoke("Confetti", 0.5f);
+            Invoke("ShowFireworks", 1f);
+        } else
+        {
+            Invoke("ShowFireworks", 1f);
         }
 
         winText.gameObject.SetActive(true);
@@ -68,6 +78,8 @@ public class GameManager : MonoBehaviour
         timeText2.gameObject.SetActive(true);
         bestTimeText.gameObject.SetActive(true);
         timeText1.gameObject.SetActive(false);
+
+        SoundManagerScript.PlaySound("celebration");
     }
 
     public void Restart()
@@ -86,5 +98,21 @@ public class GameManager : MonoBehaviour
     {
         SoundManagerScript.PlaySound("menu");
         Application.Quit();
+    }
+
+    public void ShowFireworks()
+    {
+        fireworks1.SetActive(true);
+        Invoke("Fireworks2", 2f);
+    }
+
+    public void Fireworks2()
+    {
+        fireworks2.SetActive(true);
+    }
+
+    public void Confetti()
+    {
+        confetti.SetActive(true);
     }
 }

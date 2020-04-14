@@ -7,6 +7,9 @@ public class SoundManagerScript : MonoBehaviour
     public static AudioClip explosionSound;
     public static AudioClip menuSound;
     public static AudioClip impactSound;
+    public static AudioClip fireworkSound;
+    public static AudioClip celebrationSound;
+    public static AudioClip confettiSound;
     static AudioSource audioSrc;
 
     // Start is called before the first frame update
@@ -15,6 +18,9 @@ public class SoundManagerScript : MonoBehaviour
         explosionSound = Resources.Load<AudioClip>("musket_explosion");
         menuSound = Resources.Load<AudioClip>("menu");
         impactSound = Resources.Load<AudioClip>("impact");
+        fireworkSound = Resources.Load<AudioClip>("fireworks");
+        celebrationSound = Resources.Load<AudioClip>("celebration");
+        celebrationSound = Resources.Load<AudioClip>("confetti");
         audioSrc = GetComponent<AudioSource>();
     }
 
@@ -36,6 +42,15 @@ public class SoundManagerScript : MonoBehaviour
                 break;
             case "impact":
                 audioSrc.PlayOneShot(impactSound);
+                break;
+            case "fireworks":
+                audioSrc.PlayOneShot(fireworkSound);
+                break;
+            case "celebration":
+                audioSrc.PlayOneShot(celebrationSound);
+                break;
+            case "confetti":
+                audioSrc.PlayOneShot(confettiSound);
                 break;
         }
     }
